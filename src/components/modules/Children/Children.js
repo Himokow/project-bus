@@ -19,8 +19,10 @@ const Children = () => {
         setOpen(true)
     }
 
-    const addChildren = (children) => {
-        console.log(children)
+    const addChildren = (c) => {
+        const copyChildren = [...children];
+        copyChildren.push(c);
+        setChildren(copyChildren);
     }
 
     const childrenCard = children.map( c =>

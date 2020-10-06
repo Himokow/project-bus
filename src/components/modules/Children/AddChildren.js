@@ -44,6 +44,8 @@ const AddChildren = (props) => {
 
     const handleClose = () => {
         props.setOpen(false);
+        const copyPhone = [...phone];
+        setPhone(copyPhone[0])
     };
 
     return(
