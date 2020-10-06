@@ -1,11 +1,10 @@
 import React, {useState} from 'react'
-import FaceIcon from "@material-ui/icons/Face";
 import PageHeader from "../../shared/PageHeader";
 import ChildCard from "./ChildCard";
 import AddIcon from "@material-ui/icons/Add";
+import FaceIcon from "@material-ui/icons/Face";
 import Fab from "@material-ui/core/Fab";
 import AddChildren from "./AddChildren";
-import AddSchool from "../School/AddSchool";
 
 
 const Children = () => {

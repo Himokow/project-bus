@@ -4,9 +4,7 @@ import HomeWorkIcon from '@material-ui/icons/HomeWork';
 import AddIcon from '@material-ui/icons/Add';
 import SchoolCard from "./SchoolCard";
 import Fab from "@material-ui/core/Fab";
-import Divider from "@material-ui/core/Divider";
 import AddSchool from "./AddSchool";
-import Dialog from "@material-ui/core/Dialog";
 
 const School = () => {
     const [open, setOpen] = React.useState(false);
