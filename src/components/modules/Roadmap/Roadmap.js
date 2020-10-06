@@ -1,15 +1,26 @@
 import React from 'react'
-import {Button} from "@material-ui/core";
-import AddIcon from '@material-ui/icons/Add';
 import PageHeader from "../../shared/PageHeader";
 import DirectionsBusIcon from '@material-ui/icons/DirectionsBus';
+import RoadmapCard from "./RoadmapCard";
+
 const Roadmap = () => {
 
+    const [roadmap, setRoadmap] = React.useState([
+        {firstName:"Florian",lastName:"GREMBER",stop:'Clos de la bourse',school:'St-Amand',phone:['0662626229','0652525259'],back:false},
+        {firstName:"Florian",lastName:"GREMBER",stop:'Clos de la bourse',school:'St-Amand',phone:['0662626229','0652525259'],back:false}]);
+
+    const roadmapCard = roadmap.map(r => <RoadmapCard roadmap={r}/>)
+
     return(
-        <PageHeader
-            name='Feuille de route'
-            icon={<DirectionsBusIcon/>}
-        />
+        <div>
+            <PageHeader
+                name='Feuille de route'
+                icon={<DirectionsBusIcon/>}
+            />
+            <div style={{margin:'5px'}}>
+                {roadmapCard}
+            </div>
+        </div>
     )
 }
 
