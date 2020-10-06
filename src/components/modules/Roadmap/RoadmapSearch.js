@@ -20,9 +20,9 @@ const RoadmapSearch = (props) => {
         if(event){
             if(event.value){
                 //TODO : DIff between school & stop
-            } else {
-                props.onFilter({search:event})
             }
+        } else if (input.current.value){
+            props.onFilter({search:input.current.value})
         }
         else props.onFilter('')
     }
@@ -39,7 +39,7 @@ const RoadmapSearch = (props) => {
         <React.Fragment key='right'>
             <Drawer anchor='right' open={props.open} onClose={toggleDrawer('left', false)} style={{display:'flex',flexDirection:'column'}}>
 
-                    <TextField inputRef={input} type='text' label='Rechercher un nom' onChange={() => onFilter(input.current.value)}
+                    <TextField inputRef={input} type='text' label='Rechercher un nom' onChange={() => onFilter()}
                        style={{margin:'10px'}}
                        InputProps={{
                            startAdornment: (
@@ -53,6 +53,7 @@ const RoadmapSearch = (props) => {
 
                     <InputLabel style={{margin:'10px'}}>Choix d'une école</InputLabel>
                     <Select onChange={onFilter} style={{margin:'10px'}}>
+                        <MenuItem value="...">...</MenuItem>
                         <MenuItem value="St-Amand">St-Amand</MenuItem>
                         <MenuItem value="Victor Hugo">Victor Hugo</MenuItem>
                     </Select>
@@ -61,6 +62,7 @@ const RoadmapSearch = (props) => {
 
                 <InputLabel style={{margin:'10px'}}>Choix d'un arrêt</InputLabel>
                     <Select onChange={onFilter} style={{margin:'10px'}}>
+                        <MenuItem value="...">...</MenuItem>
                         <MenuItem value="Clos de la bourse 1">Clos de la bourse 1</MenuItem>
                         <MenuItem value="Clos de la bourse 2">Clos de la bourse 2</MenuItem>
                     </Select>
