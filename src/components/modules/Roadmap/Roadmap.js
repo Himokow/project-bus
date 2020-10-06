@@ -49,7 +49,7 @@ const Roadmap = () => {
                 name='Feuille de route'
                 icon={<DirectionsBusIcon/>}
             />
-            <Button onClick={toggleDrawer('left', true)} style={{position:'absolute',top:0,right:0}}><DehazeIcon style={{color:"white"}}/></Button>
+            <Button onClick={toggleDrawer('left', true)} style={{position:'absolute',top:0,right:0}}><SearchIcon style={{color:"white"}}/></Button>
             <RoadmapSearch
                 open={open}
                 setOpen={setOpen}
