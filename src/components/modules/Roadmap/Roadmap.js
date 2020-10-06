@@ -5,6 +5,9 @@ import RoadmapCard from "./RoadmapCard";
 import TextField from "@material-ui/core/TextField";
 import SearchIcon from '@material-ui/icons/Search';
 import InputAdornment from "@material-ui/core/InputAdornment";
+import RoadmapSearch from "./RoadmapSearch";
+import Button from "@material-ui/core/Button";
+import DehazeIcon from "@material-ui/icons/Dehaze";
 
 const Roadmap = () => {
 
@@ -13,15 +16,31 @@ const Roadmap = () => {
         {firstName:"Florian",lastName:"GREMBER",stop:'Clos de la bourse',school:'St-Amand',phone:['0662626229','0652525259'],back:false}
         ]);
     const [roadmapFiltered, setRoadmapFiltered] = React.useState(roadmap.map(r => <RoadmapCard roadmap={r}/>));
+    const [open,setOpen] = React.useState(false)
     const input = React.useRef('');
 
-    const onFilter = () => {
-       const roadmapCopy = roadmap.filter(r => {
-           const name = `${r.firstName} ${r.lastName}`;
-           if( input.current.value === '' || name.includes(input.current.value)){
-               return r;
-           }
-       })
+    const toggleDrawer = (anchor, o) => (event) => {
+        if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+            return;
+        }
+
+        setOpen(o);
+    };
+
+    const onFilter = (e) => {
+        console.log(e)
+        let roadmapCopy = [];
+        if(e.search){
+           roadmapCopy = roadmap.filter(r => {
+               const name = `${r.firstName} ${r.lastName}`;
+               if( e.search === '' || name.includes(e.search)){
+                   return r;
+               }
+           })
+        }
+        if(!e){
+            roadmapCopy = [...roadmap]
+        }
         setRoadmapFiltered(roadmapCopy.map(r => <RoadmapCard roadmap={r}/>))
     }
     return(
@@ -30,14 +49,12 @@ const Roadmap = () => {
                 name='Feuille de route'
                 icon={<DirectionsBusIcon/>}
             />
-            <TextField inputRef={input} type='text' label='Rechercher un nom' onChange={() => onFilter()}
-                       InputProps={{
-                           startAdornment: (
-                               <InputAdornment position="start">
-                                   <SearchIcon />
-                               </InputAdornment>
-                           ),
-                       }}/>
+            <Button onClick={toggleDrawer('left', true)} style={{position:'absolute',top:0,right:0}}><DehazeIcon style={{color:"white"}}/></Button>
+            <RoadmapSearch
+                open={open}
+                setOpen={setOpen}
+                onFilter={e => onFilter(e)}
+            />
             <div style={{margin:'5px'}}>
                 {roadmapFiltered}
             </div>
