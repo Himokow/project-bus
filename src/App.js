@@ -2,7 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Header from "./components/core/header/Header";
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import {BrowserRouter as Router, Redirect, Route, Switch} from "react-router-dom";
 import Roadmap from "./components/modules/Roadmap/Roadmap";
 import School from "./components/modules/School/School";
 import Children from "./components/modules/Children/Children";
@@ -24,6 +24,9 @@ function App() {
       <Router>
       <Header/>
         <Switch>
+            <Route exact path='/'>
+                <Redirect to='/roadmap'/>
+            </Route>
             <Route path='/roadmap'>
                 <Roadmap/>
             </Route>

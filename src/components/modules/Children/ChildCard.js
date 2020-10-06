@@ -1,19 +1,31 @@
 import React from 'react'
 import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import CardHeader from "@material-ui/core/CardHeader";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import AccordionSummary from "@material-ui/core/AccordionSummary";
+import Accordion from "@material-ui/core/Accordion";
+import Checkbox from "@material-ui/core/Checkbox";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Typography from "@material-ui/core/Typography";
+import CardContent from "@material-ui/core/CardContent";
+import PhoneIcon from '@material-ui/icons/Phone';
 
-const ChildCard = () => {
+
+const ChildCard = (props) => {
+
+    const phone = props.children.phone.map(p => <Typography style={{display:'flex',alignItems:'center',justifyContent:'center'}}><PhoneIcon/> {p}</Typography>
+    )
     return (
-        <Card style={{margin:'1vh'}}>
-                <Typography variant='h5'>
-                    Florian GREMBER
-                </Typography>
-            <CardContent>
+  <Card style={{margin:'1vh'}}>
+      <Typography variant='h5'>
+            Florian GREMBER
+      </Typography>
+      <CardContent>
+          <Typography>Arrêt : Clos de la bourse</Typography>
+          <Typography>École : Victor Hugo</Typography>
+          {phone}
 
-            </CardContent>
-        </Card>
+      </CardContent>
+  </Card>
     )
 }
 
