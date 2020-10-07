@@ -1,29 +1,32 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import PageHeader from "../../shared/PageHeader";
 import DeckIcon from '@material-ui/icons/Deck';
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
-import AddSchool from "../School/AddSchool";
-import StopCard from "./StopCard";
 import AddStop from "./AddStop";
+import {connect, useDispatch, useSelector} from "react-redux";
+import {getStops, addStop, deleteStop} from "../../../store/actions/stopsActions";
+import StopCard from "./StopCard";
 
 
 const Stop = () => {
 
+    useEffect(() => {
+        dispatch(getStops());
+    }, [])
+
+    const dispatch = useDispatch();
+    const stops = useSelector(state =>
+        state.stops.stops
+    )
+
     const [open, setOpen] = React.useState(false);
-    const [stops, setStop] = useState([{name:"Clos de la bourse 1",address:"45 rue guynemer, 59270 Bailleul"},{name:"Clos de la bourse 2",address:"45 rue guynemer, 59270 Bailleul"}]);
 
     const openDialog = () => {
         setOpen(true)
     }
 
-    const addStop = (stop) => {
-        const copyStops = [...stops];
-        copyStops.push(stop);
-        setStop(copyStops)
-    }
-
-    const stopCards = stops.map(s => <StopCard stop={s}/>)
+    const stopCards = stops.map(s => <StopCard stop={s} deleteStop={() => dispatch(deleteStop(s))}/>)
 
     return(
         <div>
@@ -36,7 +39,7 @@ const Stop = () => {
         </Fab>
     <AddStop isOpen={open}
                setOpen={setOpen}
-               addedStop = { s => addStop(s)}/>
+               addedStop = { s => dispatch(addStop(s))}/>
         </div>
     )
 }
