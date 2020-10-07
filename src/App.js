@@ -8,6 +8,7 @@ import School from "./components/modules/School/School";
 import Children from "./components/modules/Children/Children";
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 import { ThemeProvider } from '@material-ui/styles';
+import Stop from "./components/modules/Stop/Stop";
 
 
 const darkTheme = createMuiTheme({
@@ -35,6 +36,9 @@ function App() {
             </Route>
             <Route path='/children'>
                 <Children/>
+            </Route>
+            <Route path='/stop'>
+                <Stop/>
             </Route>
       </Switch>
     </Router>
