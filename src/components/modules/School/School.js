@@ -36,7 +36,7 @@ const School = () => {
         <div>
             <PageHeader
                 name='Écoles'
-                icon={<HomeWorkIcon/>}
+                    icon={<HomeWorkIcon/>}
             />
             {schoolCards}
             <Fab color="secondary" variant="extended" style={{position:'absolute',bottom:'1vh',right:'1vh'}} onClick={openDialog}>

@@ -5,6 +5,7 @@ import DehazeIcon from '@material-ui/icons/Dehaze';
 import DirectionsBusIcon from '@material-ui/icons/DirectionsBus';
 import FaceIcon from '@material-ui/icons/Face';
 import HomeWorkIcon from '@material-ui/icons/HomeWork';
+import DeckIcon from '@material-ui/icons/Deck';
 import './Header.css';
 import { Link , useLocation} from "react-router-dom";
 
@@ -18,7 +19,8 @@ const Header = () => {
         buttons:[
             {name:'Feuille de route',icon:<DirectionsBusIcon/>,route:'/roadmap'},
             {name:'Ecoles',icon:<HomeWorkIcon/>,route:'/school'},
-            {name:'Enfants',icon:<FaceIcon/>,route:'/children'}
+            {name:'Enfants',icon:<FaceIcon/>,route:'/children'},
+            {name:'Arrêt',icon:<DeckIcon/>,route:'/stop'}
             ]
     });
 
