@@ -5,7 +5,7 @@ import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import AddStop from "./AddStop";
 import {connect, useDispatch, useSelector} from "react-redux";
-import {getStops, addStop, deleteStop} from "../../../store/actions/stopsActions";
+import {getStops, addStop, deleteStop} from "../../../store/actions/StopsActions";
 import StopCard from "./StopCard";
 
 

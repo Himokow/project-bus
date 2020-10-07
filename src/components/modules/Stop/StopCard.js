@@ -3,7 +3,7 @@ import Card from "@material-ui/core/Card";
 import Typography from "@material-ui/core/Typography";
 import CardContent from "@material-ui/core/CardContent";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
-import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import DeleteForeverTwoToneIcon from '@material-ui/icons/DeleteForeverTwoTone';
 import IconButton from "@material-ui/core/IconButton";
 
 const StopCard = (props) => {
@@ -13,8 +13,8 @@ const StopCard = (props) => {
             <Typography variant='h5'>
                 {props.stop.name}
             </Typography>
-            <IconButton onClick={() => props.deleteStop()}>
-                <DeleteForeverIcon/>
+            <IconButton onClick={() => props.deleteStop()} style={{position:"absolute",right:'1vh',color:'#b02617'}}>
+                <DeleteForeverTwoToneIcon/>
             </IconButton>
             <CardContent>
                 <Typography>
