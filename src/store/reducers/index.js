@@ -5,6 +5,6 @@ import schoolReducer from './SchoolsReducers'
 
 export default combineReducers({
     stops: stopReducer,
-    childrens : childReducer,
+    children : childReducer,
     schools: schoolReducer
 })

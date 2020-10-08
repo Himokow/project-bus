@@ -22,7 +22,13 @@ export const getChildren = () => async dispatch => {
 
 export const addChild = (child) => async dispatch =>  {
     try {
-        const res = await axios.post(`http://localhost:3001/children`,{})
+        const res = await axios.post(`http://localhost:3001/children`,{
+            firstName:child.firstName,
+            lastName:child.lastName,
+            phone:child.phone,
+            school:child.school,
+            stop:child.stop,
+        })
         dispatch({
             type: ADD_CHILD,
             payload: res.data

@@ -5,7 +5,6 @@ import AddIcon from '@material-ui/icons/Add';
 import SchoolCard from "./SchoolCard";
 import Fab from "@material-ui/core/Fab";
 import AddSchool from "./AddSchool";
-import {getStops} from "../../../store/actions/StopsActions";
 import {useDispatch, useSelector} from "react-redux";
 import {addSchool, deleteSchool, getSchools} from "../../../store/actions/SchoolActions";
 
@@ -20,19 +19,10 @@ const School = () => {
         state.schools.schools
     )
     const [open, setOpen] = React.useState(false);
-    // const [schools, setSchools] = useState([{name:"St-Amand",address:"45 rue guynemer, 59270 Bailleul"},{name:"Victor Hugo",address:"45 rue guynemer, 59270 Bailleul"}]);
-
-    // const schools = [{name:"St-Amand",address:"45 rue guynemer, 59270 Bailleul"},{name:"Victor Hugo",address:"45 rue guynemer, 59270 Bailleul"}]
 
     const openDialog = () => {
         setOpen(true)
     }
-
-    // const addSchool = (school) => {
-    //     const copySchools = [...schools];
-    //     copySchools.push(school);
-    //     setSchools(copySchools)
-    // }
 
     const schoolCards = schools.map(s => {
         return(
@@ -42,8 +32,6 @@ const School = () => {
             />
         )
     })
-
-
 
     return(
         <div>

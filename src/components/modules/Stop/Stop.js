@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
 import PageHeader from "../../shared/PageHeader";
 import DeckIcon from '@material-ui/icons/Deck';
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import AddStop from "./AddStop";
-import {connect, useDispatch, useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {getStops, addStop, deleteStop} from "../../../store/actions/StopsActions";
 import StopCard from "./StopCard";
 
