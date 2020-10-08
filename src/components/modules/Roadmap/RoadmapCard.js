@@ -14,7 +14,7 @@ const RoadmapCard = (props) => {
     const phone = props.roadmap.phone.map(p => <Typography style={{display:'flex',alignItems:'center',justifyContent:'left'}}><PhoneIcon/> {p}</Typography>);
 
     return (
-        <Accordion>
+        <Accordion style={{marginBottom:'10px'}}>
             <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-label="Expand"
@@ -23,20 +23,27 @@ const RoadmapCard = (props) => {
                 style={{display:'flex',alignItems:'center'}}
             >
                 <div style={{width:'100%'}}>
-                    <Typography variant='h5' style={{marginBottom:'5px'}}>{props.roadmap.firstName} {props.roadmap.lastName}</Typography>
+                    <Typography variant='h5' style={{marginBottom:'5px', textAlign:'left'}}>{props.roadmap.firstName} {props.roadmap.lastName}</Typography>
                 <div style={{display:'flex',width:'100%'}}>
                     <div style={{width:'90%',textAlign:'left'}}>
                         <Typography>École : {props.roadmap.school.name}</Typography>
                         <Typography>Arrêt : {props.roadmap.stop.name}</Typography>
                     </div>
-                    <div>
+                    <div style={{position:'absolute',top:0,right:'10%',display:'flex',flexDirection:'column'}}>
                         <FormControlLabel
                             onClick={(event) => event.stopPropagation()}
                             onFocus={(event) => event.stopPropagation()}
-                            control={<Checkbox style={{padding:'0px'}} checked={props.roadmap.back} onChange={(event) => props.checkChild(event.target.checked)}/>}
-                            label="Retour"
+                            control={<Checkbox style={{padding:'0px'}} checked={props.roadmap.present} onChange={(event) => props.checkPresent(event.target.checked)}/>}
+                            label="Présent"
                             labelPlacement='top'
                         />
+                        <FormControlLabel
+                        onClick={(event) => event.stopPropagation()}
+                        onFocus={(event) => event.stopPropagation()}
+                        control={<Checkbox style={{padding:'0px'}} checked={props.roadmap.back} onChange={(event) => props.checkBack(event.target.checked)}/>}
+                        label="Retour"
+                        labelPlacement='top'
+                    />
                     </div>
                 </div>
                 </div>

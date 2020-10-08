@@ -51,6 +51,7 @@ export default function(state = initialState, action){
 
             let copyChild = copyChildren[index]
             copyChild.back = action.payload.back;
+            copyChild.present = action.payload.present;
             copyChildren[index] = copyChild;
 
             console.log(copyChildren)

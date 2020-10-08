@@ -68,7 +68,11 @@ const Roadmap = () => {
         if(!e){
             roadmapCopy = [...roadmap]
         }
-        setRoadmapFiltered(roadmapCopy.map(r => <RoadmapCard roadmap={r} checkChild={(checked) => dispatch(updateChild({...r,back:checked}))}/>))
+        setRoadmapFiltered(roadmapCopy.map(r =>
+            <RoadmapCard
+            roadmap={r}
+             checkBack={(checked) => dispatch(updateChild({...r,back:checked}))}
+             checkPresent={(checked) => dispatch(updateChild({...r,present:checked}))}/>))
     }
     return(
         <div>

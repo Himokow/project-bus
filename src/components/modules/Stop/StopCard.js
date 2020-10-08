@@ -9,7 +9,7 @@ import IconButton from "@material-ui/core/IconButton";
 const StopCard = (props) => {
 
     return (
-        <Card style={{margin:'1vh'}}>
+        <Card style={{margin:'1vh',position:'relative'}}>
             <Typography variant='h5'>
                 {props.stop.name}
             </Typography>

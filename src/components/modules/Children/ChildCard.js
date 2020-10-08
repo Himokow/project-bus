@@ -13,7 +13,7 @@ const ChildCard = (props) => {
     const phone = props.children.phone.map(p => <Typography style={{display:'flex',alignItems:'center',justifyContent:'center'}}><PhoneIcon/> {p}</Typography>
     )
     return (
-  <Card style={{margin:'1vh'}}>
+  <Card style={{margin:'1vh',position:'relative'}}>
       <Typography variant='h5'>
             {props.children.firstName} {props.children.lastName}
       </Typography>

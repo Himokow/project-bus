@@ -9,7 +9,7 @@ import DeleteForeverTwoToneIcon from "@material-ui/icons/DeleteForeverTwoTone";
 const SchoolCard = (props) => {
 
     return (
-        <Card style={{margin:'1vh'}}>
+        <Card style={{margin:'1vh',position:'relative'}}>
             <Typography variant='h5'>
                 {props.school.name}
             </Typography>

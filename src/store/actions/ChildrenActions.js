@@ -67,6 +67,7 @@ export const deleteChild = (child) => async dispatch => {
 }
 
 export const updateChild = (child) => async dispatch => {
+    console.log(child)
     try{
         const res = await axios.put(`http://localhost:3001/children/${child.id}`,{
             firstName:child.firstName,
@@ -74,7 +75,8 @@ export const updateChild = (child) => async dispatch => {
             phone:child.phone,
             school:child.school,
             stop:child.stop,
-            back:child.back
+            back:child.back,
+            present:child.present
         })
         dispatch({
             type: UPDATE_CHILD_CHECKBOX,
@@ -90,7 +92,10 @@ export const updateChild = (child) => async dispatch => {
 
 export const uncheckAll = (children) => async dispatch => {
     try{
-        children.map(c => c.back=false)
+        children.map(c => {
+            c.back=false
+            c.present=false
+        })
         console.log(children)
         const res = await axios.get(`http://localhost:3001/children/uncheck`)
         dispatch({
