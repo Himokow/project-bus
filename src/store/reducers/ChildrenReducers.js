@@ -1,4 +1,11 @@
-import {GET_CHILDREN, ADD_CHILD, DELETE_CHILD, UPDATE_CHILD} from '../types'
+import {
+    GET_CHILDREN,
+    ADD_CHILD,
+    DELETE_CHILD,
+    UPDATE_CHILD,
+    UPDATE_CHILD_CHECKBOX,
+    UNCHECK_ALL_CHILDREN
+} from '../types'
 
 const initialState = {
     children:[],
@@ -21,8 +28,7 @@ export default function(state = initialState, action){
 
         case ADD_CHILD:
             return {
-                ...state,
-                children:[...state.children,action.payload],
+                children:action.payload,
                 loading:false
             }
 
@@ -38,8 +44,27 @@ export default function(state = initialState, action){
                 loading:false
             }
 
-        case UPDATE_CHILD:
+        case UPDATE_CHILD_CHECKBOX:
+            index = copyChildren.findIndex(s => {
+                return s.id === action.payload.id
+            })
+
+            let copyChild = copyChildren[index]
+            copyChild.back = action.payload.back;
+            copyChildren[index] = copyChild;
+
+            console.log(copyChildren)
+            return{
+                children:copyChildren,
+                loading:false
+            }
+
+        case UNCHECK_ALL_CHILDREN:
             console.log(action.payload)
+            return{
+                children:action.payload,
+                loading:false
+            }
 
         default: return state
     }

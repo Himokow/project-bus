@@ -1,4 +1,12 @@
-import {ADD_CHILD, DELETE_CHILD, GET_CHILDREN, CHILDREN_ERROR, UPDATE_CHILD} from '../types'
+import {
+    ADD_CHILD,
+    DELETE_CHILD,
+    GET_CHILDREN,
+    CHILDREN_ERROR,
+    UPDATE_CHILD,
+    UPDATE_CHILD_CHECKBOX,
+    UNCHECK_ALL_CHILDREN
+} from '../types'
 import axios from 'axios'
 import {Add} from "@material-ui/icons";
 
@@ -69,7 +77,24 @@ export const updateChild = (child) => async dispatch => {
             back:child.back
         })
         dispatch({
-            type: UPDATE_CHILD,
+            type: UPDATE_CHILD_CHECKBOX,
+            payload:res.data
+        })
+    } catch (e) {
+        dispatch( {
+            type: CHILDREN_ERROR,
+            payload: console.log(e),
+        })
+    }
+}
+
+export const uncheckAll = (children) => async dispatch => {
+    try{
+        children.map(c => c.back=false)
+        console.log(children)
+        const res = await axios.get(`http://localhost:3001/children/uncheck`)
+        dispatch({
+            type: UNCHECK_ALL_CHILDREN,
             payload:res.data
         })
     } catch (e) {

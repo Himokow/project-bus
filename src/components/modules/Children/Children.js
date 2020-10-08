@@ -47,7 +47,9 @@ const Children = () => {
         name='Enfants'
         icon=<FaceIcon/>
      />
-            {childrenCard}
+            <div style={{'overflow-y':'scroll',height:'85vh'}}>
+                {childrenCard}
+            </div>
             <Fab color="secondary" variant="extended" style={{position:'absolute',bottom:'1vh',right:'1vh'}} onClick={openDialog}>
                 Ajouter un enfant <AddIcon />
             </Fab>

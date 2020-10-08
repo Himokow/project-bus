@@ -39,7 +39,9 @@ const School = () => {
                 name='Écoles'
                     icon={<HomeWorkIcon/>}
             />
-            {schoolCards}
+            <div style={{'overflow-y':'scroll',height:'85vh'}}>
+                {schoolCards}
+            </div>
             <Fab color="secondary" variant="extended" style={{position:'absolute',bottom:'1vh',right:'1vh'}} onClick={openDialog}>
                 Ajouter une école <AddIcon />
             </Fab>

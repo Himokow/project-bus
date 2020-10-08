@@ -33,7 +33,9 @@ const Stop = () => {
             <PageHeader
             name='Arrêt'
             icon={<DeckIcon/>}/>
-            {stopCards}
+            <div style={{'overflow-y':'scroll',height:'85vh'}}>
+                {stopCards}
+            </div>
         <Fab color="secondary" variant="extended" style={{position:'absolute',bottom:'1vh',right:'1vh'}} onClick={openDialog}>
         Ajouter un arrêt <AddIcon />
         </Fab>

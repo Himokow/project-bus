@@ -8,7 +8,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import RoadmapSearch from "./RoadmapSearch";
 import Button from "@material-ui/core/Button";
 import DehazeIcon from "@material-ui/icons/Dehaze";
-import {getChildren, updateChild} from "../../../store/actions/ChildrenActions";
+import {getChildren, uncheckAll, updateChild} from "../../../store/actions/ChildrenActions";
 import {getSchools} from "../../../store/actions/SchoolActions";
 import {getStops} from "../../../store/actions/StopsActions";
 import {useDispatch, useSelector} from "react-redux";
@@ -19,6 +19,7 @@ const Roadmap = () => {
         dispatch(getChildren())
         dispatch(getSchools())
         dispatch(getStops())
+        console.log('here')
     }, [])
 
     const dispatch = useDispatch();
@@ -33,6 +34,7 @@ const Roadmap = () => {
     )
 
     useEffect(() => {
+        console.log('update',roadmap)
         onFilter()
     },[roadmap])
 
@@ -82,7 +84,8 @@ const Roadmap = () => {
                 stops={stops}
                 onFilter={e => onFilter(e)}
             />
-            <div style={{margin:'5px'}}>
+            <Button variant='contained' color='secondary' style={{margin:'10px 5px'}} onClick={() => dispatch(uncheckAll(roadmap))}>Tout décocher</Button>
+            <div style={{margin:'5px','overflow-y':'scroll',height:'85vh'}}>
                 {roadmapFiltered}
             </div>
         </div>
