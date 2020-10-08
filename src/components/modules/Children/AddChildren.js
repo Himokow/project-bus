@@ -47,6 +47,9 @@ const AddChildren = (props) => {
         setPhone(copyPhone[0])
     };
 
+    const schools = props.schools.map(s => <MenuItem value={s.id}>{s.name}</MenuItem>)
+    const stops = props.stops.map(s => <MenuItem value={s.id}>{s.name}</MenuItem>)
+
     return(
         <Dialog open={props.isOpen} color="primary">
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -59,8 +62,7 @@ const AddChildren = (props) => {
                         <Controller
                             as={
                                 <Select>
-                                    <MenuItem value='Clos de la bourse 1'>Clos de la bourse 1</MenuItem>
-                                    <MenuItem value='Clos de la bourse 2'>Clos de la bourse 2</MenuItem>
+                                    {stops}
                                 </Select>
                             }
                             name='stop'
@@ -72,8 +74,7 @@ const AddChildren = (props) => {
                         <Controller
                             as={
                                 <Select>
-                                    <MenuItem value='St-Amand'>St-Amand</MenuItem>
-                                    <MenuItem value='Victor Hugo'>Victor Hugo</MenuItem>
+                                   {schools}
                                 </Select>
                             }
                             name='school'
