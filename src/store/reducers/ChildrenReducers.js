@@ -1,4 +1,4 @@
-import {GET_CHILDREN,ADD_CHILD,DELETE_CHILD} from '../types'
+import {GET_CHILDREN, ADD_CHILD, DELETE_CHILD, UPDATE_CHILD} from '../types'
 
 const initialState = {
     children:[],
@@ -37,6 +37,10 @@ export default function(state = initialState, action){
                 children:copyChildren,
                 loading:false
             }
+
+        case UPDATE_CHILD:
+            console.log(action.payload)
+
         default: return state
     }
 

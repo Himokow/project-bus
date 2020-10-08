@@ -11,7 +11,7 @@ import PhoneIcon from "@material-ui/icons/Phone";
 
 const RoadmapCard = (props) => {
 
-    const phone = props.roadmap.phone.map(p => <Typography style={{display:'flex',alignItems:'center',justifyContent:'center'}}><PhoneIcon/> {p}</Typography>);
+    const phone = props.roadmap.phone.map(p => <Typography style={{display:'flex',alignItems:'center',justifyContent:'left'}}><PhoneIcon/> {p}</Typography>);
 
     return (
         <Accordion>
@@ -26,14 +26,14 @@ const RoadmapCard = (props) => {
                     <Typography variant='h5' style={{marginBottom:'5px'}}>{props.roadmap.firstName} {props.roadmap.lastName}</Typography>
                 <div style={{display:'flex',width:'100%'}}>
                     <div style={{width:'90%',textAlign:'left'}}>
-                        <Typography>École : {props.roadmap.school}</Typography>
-                        <Typography>Arrêt : {props.roadmap.stop}</Typography>
+                        <Typography>École : {props.roadmap.school.name}</Typography>
+                        <Typography>Arrêt : {props.roadmap.stop.name}</Typography>
                     </div>
                     <div>
                         <FormControlLabel
                             onClick={(event) => event.stopPropagation()}
                             onFocus={(event) => event.stopPropagation()}
-                            control={<Checkbox style={{padding:'0px'}}/>}
+                            control={<Checkbox style={{padding:'0px'}} onChange={(event) => props.checkChild(event.target.checked)}/>}
                             label="Retour"
                             labelPlacement='top'
                         />

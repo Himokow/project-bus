@@ -7,7 +7,7 @@ import Fab from "@material-ui/core/Fab";
 import AddChildren from "./AddChildren";
 import {getSchools} from "../../../store/actions/SchoolActions";
 import {useDispatch, useSelector} from "react-redux";
-import {addChild, getChildren} from "../../../store/actions/ChildrenActions";
+import {addChild, deleteChild, getChildren} from "../../../store/actions/ChildrenActions";
 import {getStops} from "../../../store/actions/StopsActions";
 
 
@@ -30,22 +30,16 @@ const Children = () => {
         state.schools.schools
     )
     const [open, setOpen] = React.useState(false);
-    // const [children, setChildren] = useState([
-    //     {firstName:"Florian",lastName:"GREMBER",stop:'Clos de la bourse',school:'St-Amand',phone:['0662626229','0652525259']},
-    //     {firstName:"Florian",lastName:"GREMBER",stop:'Clos de la bourse',school:'St-Amand',phone:['0662626229','0652525259']}
-    //     ]);
+
     const openDialog = () => {
         setOpen(true)
     }
 
-    // const addChildren = (c) => {
-    //     const copyChildren = [...children];
-    //     copyChildren.push(c);
-    //     setChildren(copyChildren);
-    // }
-
     const childrenCard = children.map( c =>
-        <ChildCard children={c}/>
+        <ChildCard
+            children={c}
+            deleteChild={() => dispatch(deleteChild(c))}
+        />
     )
     return(
         <div>

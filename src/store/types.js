@@ -5,6 +5,7 @@ export const STOPS_ERROR = 'STOPS_ERROR'
 
 export const GET_CHILDREN = 'GET_CHILDREN'
 export const ADD_CHILD = 'ADD_CHILD';
+export const UPDATE_CHILD = 'UPDATE_CHILD';
 export const DELETE_CHILD = 'DELETE_CHILD'
 export const CHILDREN_ERROR = 'CHILDREN_ERROR'
 
