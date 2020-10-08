@@ -4,7 +4,7 @@ import axios from 'axios'
 export const getSchools = () => async dispatch => {
     console.log('here')
     try{
-        const res = await axios.get(`http://localhost:3001/school`)
+        const res = await axios.get(`${process.env.API_URL}/school`)
         dispatch( {
             type: GET_SCHOOLS,
             payload: res.data
@@ -21,7 +21,7 @@ export const getSchools = () => async dispatch => {
 
 export const addSchool = (school) => async dispatch =>  {
     try {
-        const res = await axios.post(`http://localhost:3001/school`,{name:school.name,address:school.address})
+        const res = await axios.post(`${process.env.API_URL}/school`,{name:school.name,address:school.address})
         dispatch({
             type: ADD_SCHOOL,
             payload: res.data
@@ -37,7 +37,7 @@ export const addSchool = (school) => async dispatch =>  {
 
 export const deleteSchool = (school) => async dispatch => {
     try{
-        const res = await axios.delete(`http://localhost:3001/school/${school.id}`)
+        const res = await axios.delete(`${process.env.API_URL}/school/${school.id}`)
         dispatch({
             type: DELETE_SCHOOL,
             payload:school.id
