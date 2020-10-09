@@ -12,8 +12,9 @@ import {Add} from "@material-ui/icons";
 
 export const getChildren = () => async dispatch => {
     console.log('here')
+    const api = process.env.REACT_APP_REACT_APP_API_URL ? process.env.REACT_APP_REACT_APP_API_URL : process.env.REACT_APP_API_URL;
     try{
-        const res = await axios.get(`${process.env.REACT_APP_API_URL}/children`)
+        const res = await axios.get(`${api}/children`)
         dispatch( {
             type: GET_CHILDREN,
             payload: res.data
@@ -30,7 +31,7 @@ export const getChildren = () => async dispatch => {
 
 export const addChild = (child) => async dispatch =>  {
     try {
-        const res = await axios.post(`${process.env.REACT_APP_API_URL}/children`,{
+        const res = await axios.post(`${api}/children`,{
             firstName:child.firstName,
             lastName:child.lastName,
             phone:child.phone,
