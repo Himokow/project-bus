@@ -23,7 +23,9 @@ const RoadmapCard = (props) => {
                 style={{display:'flex',alignItems:'center'}}
             >
                 <div style={{width:'100%'}}>
-                    <Typography variant='h5' style={{marginBottom:'5px', textAlign:'left'}}>{props.roadmap.firstName} {props.roadmap.lastName}</Typography>
+                    <Typography variant='h5' style={{marginBottom:'5px', textAlign:'left'}}>
+                        {props.roadmap.lastName.toUpperCase()} {props.roadmap.firstName}
+                    </Typography>
                 <div style={{display:'flex',width:'100%'}}>
                     <div style={{width:'90%',textAlign:'left'}}>
                         <Typography>École : {props.roadmap.school.name}</Typography>

@@ -27,14 +27,14 @@ const RoadmapSearch = (props) => {
     useEffect(()=>{
         if(props.schools.length > 0){
         console.log(props)
-            const copySchools = [<MenuItem value=""><em>None</em></MenuItem>];
+            const copySchools = [<MenuItem value=""><em>Aucune</em></MenuItem>];
             props.schools.map(s => {
                    copySchools.push(<MenuItem value={s.id}>{s.name}</MenuItem>)
             setSchools(copySchools);
            });
         }
         if(props.stops){
-            const copyStops = [<MenuItem value=""><em>None</em></MenuItem>];
+            const copyStops = [<MenuItem value=""><em>Aucune</em></MenuItem>];
             props.stops.map(s => {
                 copyStops.push(<MenuItem value={s.id}>{s.name}</MenuItem>)
             });

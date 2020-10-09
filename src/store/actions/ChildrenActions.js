@@ -68,7 +68,6 @@ export const deleteChild = (child) => async dispatch => {
 }
 
 export const updateChild = (child) => async dispatch => {
-    console.log(child)
     try{
         const res = await axios.put(`${api}/children/${child.id}`,{
             firstName:child.firstName,
