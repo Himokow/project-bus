@@ -15,7 +15,7 @@ const ChildCard = (props) => {
     return (
   <Card style={{margin:'1vh',position:'relative'}}>
       <Typography variant='h5'>
-            {props.children.firstName} {props.children.lastName}
+          {props.children.lastName.toUpperCase()} {props.children.firstName}
       </Typography>
       <IconButton onClick={() => props.deleteChild()} style={{position:"absolute",right:'1vh',color:'#b02617'}}>
           <DeleteForeverTwoToneIcon/>

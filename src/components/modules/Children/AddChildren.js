@@ -55,8 +55,8 @@ const AddChildren = (props) => {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <DialogTitle>Ajout d'un enfant</DialogTitle>
                 <DialogContent style={{display:'flex',flexDirection:'column',alignItems:'center'}}>
-                    <TextField type='text' name="firstName" label="Prénom" inputRef={register}/>
                     <TextField type='text' name="lastName" label="Nom" inputRef={register}/>
+                    <TextField type='text' name="firstName" label="Prénom" inputRef={register}/>
                     <FormControl style={{width:'100%'}}>
                         <InputLabel>Arrêt</InputLabel>
                         <Controller
@@ -85,8 +85,8 @@ const AddChildren = (props) => {
                     <Button onClick={addPhone}>+</Button>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose} color='success'>Close</Button>
-                    <Button type='submit' color='error'>Save</Button>
+                    <Button onClick={handleClose} color='primary'>Annuler</Button>
+                    <Button type='submit' color='error'>Sauvegarder</Button>
                 </DialogActions>
             </form>
         </Dialog>
