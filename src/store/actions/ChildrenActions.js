@@ -53,7 +53,7 @@ export const addChild = (child) => async dispatch =>  {
 
 export const deleteChild = (child) => async dispatch => {
     try{
-        const res = await axios.delete(`${process.env.REACT_APP_API_URL}/children/${child.id}`)
+        const res = await axios.delete(`${api}/children/${child.id}`)
         dispatch({
             type: DELETE_CHILD,
             payload:child.id
@@ -70,7 +70,7 @@ export const deleteChild = (child) => async dispatch => {
 export const updateChild = (child) => async dispatch => {
     console.log(child)
     try{
-        const res = await axios.put(`${process.env.REACT_APP_API_URL}/children/${child.id}`,{
+        const res = await axios.put(`${api}/children/${child.id}`,{
             firstName:child.firstName,
             lastName:child.lastName,
             phone:child.phone,
@@ -98,7 +98,7 @@ export const uncheckAll = (children) => async dispatch => {
             c.present=false
         })
         console.log(children)
-        const res = await axios.get(`${process.env.REACT_APP_API_URL}/children/uncheck`)
+        const res = await axios.get(`${api}/children/uncheck`)
         dispatch({
             type: UNCHECK_ALL_CHILDREN,
             payload:res.data
