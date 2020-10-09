@@ -85,8 +85,8 @@ const AddChildren = (props) => {
                     <Button onClick={addPhone}>+</Button>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose} color='primary'>Annuler</Button>
-                    <Button type='submit' color='error'>Sauvegarder</Button>
+                    <Button variant='contained' onClick={handleClose} color='secondary'>Annuler</Button>
+                    <Button variant='contained' type='submit' color='primary'>Sauvegarder</Button>
                 </DialogActions>
             </form>
         </Dialog>

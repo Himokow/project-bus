@@ -28,8 +28,8 @@ const AddStop = (props) => {
                     <TextField type='text' name="address" label="Adresse de l'arrêt" inputRef={register}/>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose} color='primary'>Annuler</Button>
-                    <Button type='submit' color='error'>Sauvegarder</Button>
+                    <Button variant='contained' onClick={handleClose} color='secondary'>Annuler</Button>
+                    <Button variant='contained' type='submit' color='primary'>Sauvegarder</Button>
                 </DialogActions>
             </form>
         </Dialog>
