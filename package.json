@@ -12,6 +12,7 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.20.0",
+    "dotenv-webpack": "^3.0.0",
     "react": "^16.13.1",
     "react-addons-linked-state-mixin": "^15.6.2",
     "react-dom": "^16.13.1",
@@ -25,11 +26,11 @@
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-app-env --env-file=.env start",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "dev": "webpack --env.ENVIRONMENT=development   --config webpack.config.dev.js",
-    "build": "webpack --env.ENVIRONMENT=production --config webpack.config.build.js"
+    "dev": "react-app-env --env-file=.env start",
+    "build": "react-app-env --env-file=prod.env build"
   },
   "eslintConfig": {
     "extends": "react-app"
