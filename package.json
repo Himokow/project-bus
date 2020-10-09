@@ -2,6 +2,9 @@
   "name": "projet-bus",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "13.x"
+  },
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
@@ -9,6 +12,7 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.20.0",
+    "dotenv-webpack": "^3.0.0",
     "react": "^16.13.1",
     "react-addons-linked-state-mixin": "^15.6.2",
     "react-dom": "^16.13.1",
@@ -23,9 +27,10 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "dev": "react-app-env --env-file=forLocal.env start",
+    "build": "react-scripts build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -43,6 +48,10 @@
     ]
   },
   "devDependencies": {
-    "@material-ui/styles": "^4.10.0"
+    "@material-ui/styles": "^4.10.0",
+    "dotenv": "^8.2.0",
+    "react-app-env": "^1.2.3",
+    "webpack": "4.42.0",
+    "webpack-cli": "^3.3.12"
   }
 }
