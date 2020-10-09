@@ -26,11 +26,11 @@
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
-    "start": "react-app-env --env-file=.env start",
+    "start": "react-scripts start",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "dev": "react-app-env --env-file=.env start",
-    "build": "react-app-env --env-file=prod.env build"
+    "dev": "react-app-env --env-file=forLocal.env start",
+    "build": "react-scripts build"
   },
   "eslintConfig": {
     "extends": "react-app"
