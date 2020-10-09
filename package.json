@@ -26,7 +26,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "dev": "webpack --env.API_URL=http://localhost:3001 --config webpack.config.dev.js",
-    "build": "webpack --env.API_URL=https://www.myapi.com --config webpack.config.build.js"
+    "build": "webpack --env.API_URL=https://project-bus-back-dev.herokuapp.com/ --config webpack.config.build.js"
   },
   "eslintConfig": {
     "extends": "react-app"
