@@ -3,7 +3,7 @@ import axios from 'axios'
 
 export const getSchools = () => async dispatch => {
     console.log('here')
-    const api = process.env.REACT_APP_REACT_APP_API_URL ? process.env.REACT_APP_REACT_APP_API_URL : api;
+    const api = process.env.REACT_APP_REACT_APP_API_URL ? process.env.REACT_APP_REACT_APP_API_URL : process.env.REACT_APP_API_URL;
 
     try{
         const res = await axios.get(`${api}/school`)
