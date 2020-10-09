@@ -10,10 +10,10 @@ import {
 import axios from 'axios'
 import {Add} from "@material-ui/icons";
 
-console.log(process.env.REACT_APP_REACT_APP_API_URL)
-    const api = process.env.REACT_APP_REACT_APP_API_URL? process.env.REACT_APP_REACT_APP_API_URL : process.env.REACT_APP_API_URL;
 export const getChildren = () => async dispatch => {
     console.log('here')
+console.log(process.env.REACT_APP_REACT_APP_API_URL)
+    const api = process.env.REACT_APP_REACT_APP_API_URL? process.env.REACT_APP_REACT_APP_API_URL : process.env.REACT_APP_API_URL;
     try{
         const res = await axios.get(`${api}/children`)
         dispatch( {
