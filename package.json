@@ -25,8 +25,8 @@
     "start": "react-scripts start",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "dev": "webpack --env.API_URL=http://localhost:3001 --config webpack.config.dev.js",
-    "build": "webpack --env.API_URL=https://project-bus-back-dev.herokuapp.com/ --config webpack.config.build.js"
+    "dev": "webpack --env.ENVIRONMENT=development   --config webpack.config.dev.js",
+    "build": "webpack --env.ENVIRONMENT=production --config webpack.config.build.js"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -46,7 +46,6 @@
   "devDependencies": {
     "@material-ui/styles": "^4.10.0",
     "dotenv": "^8.2.0",
-    "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12"
   }
 }

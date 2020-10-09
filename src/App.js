@@ -18,6 +18,7 @@ const darkTheme = createMuiTheme({
 });
 
 function App() {
+    console.log(process.env)
   return (
       <ThemeProvider theme={darkTheme}>
 
