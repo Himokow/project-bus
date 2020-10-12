@@ -26,7 +26,6 @@ const RoadmapSearch = (props) => {
 
     useEffect(()=>{
         if(props.schools.length > 0){
-        console.log(props)
             const copySchools = [<MenuItem value=""><em>Aucune</em></MenuItem>];
             props.schools.map(s => {
                    copySchools.push(<MenuItem value={s.id}>{s.name}</MenuItem>)
@@ -43,19 +42,17 @@ const RoadmapSearch = (props) => {
     },[props])
 
     const onFilter = (event) => {
-        if(event && event.target.value){
-            console.log(event.target.value,props.schools)
-            if(props.schools.find(s => s.id === event.target.value )){
-                console.log(event)
-
-                props.onFilter({school:event.target.value})
-            } else if (props.stops.find(s => s.id === event.target.value)){
-                props.onFilter({stop:event.target.value})
-            }
-        } else if (input.current.value){
+        console.log(event)
+        if(event && (event.school || event.school==='')){
+            props.onFilter({school:event.school})
+        }
+        else if(event && (event.stop || event.stop === '')){
+            props.onFilter({stop:event.stop})
+        }
+         else if (input.current.value || input.current.value === ''){
             props.onFilter({search:input.current.value})
         }
-        else props.onFilter('')
+        // else props.onFilter('')
     }
 
     const toggleDrawer = (anchor, o) => (event) => {
@@ -72,6 +69,7 @@ const RoadmapSearch = (props) => {
 
                     <TextField inputRef={input} type='text' label='Rechercher un nom' onChange={() => onFilter()}
                        style={{margin:'10px'}}
+                               value={props.filters.search}
                        InputProps={{
                            startAdornment: (
                                <InputAdornment position="start">
@@ -83,14 +81,14 @@ const RoadmapSearch = (props) => {
                     <Divider style={{margin:'15px'}}/>
 
                     <InputLabel style={{margin:'10px'}}>Choix d'une école</InputLabel>
-                    <Select onChange={onFilter} style={{margin:'10px'}}>
+                    <Select onChange={(event) => onFilter({school:event.target.value})} style={{margin:'10px'}} value={props.filters.selectedSchool}>
                         {schools}
                     </Select>
 
                 <Divider style={{margin:'15px'}}/>
 
                 <InputLabel style={{margin:'10px'}}>Choix d'un arrêt</InputLabel>
-                    <Select onChange={onFilter} style={{margin:'10px'}}>
+                    <Select onChange={(event) => onFilter({stop : event.target.value})} style={{margin:'10px'}} value={props.filters.selectedStop}>
                         {stops}
                     </Select>
             </Drawer>
