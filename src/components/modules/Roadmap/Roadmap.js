@@ -40,6 +40,7 @@ const Roadmap = () => {
 
     const [roadmapFiltered, setRoadmapFiltered] = React.useState([]);
     const [open,setOpen] = React.useState(false)
+    const [filters,setFilters]= React.useState({selectedSchool:'',selectedStop:'',search:''})
 
     const toggleDrawer = (anchor, o) => (event) => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -51,23 +52,31 @@ const Roadmap = () => {
     const onFilter = (e) => {
         console.log(e)
         let roadmapCopy = [...roadmap];
-        if(e && e.search){
+        let filtersCopy = {...filters}
+        if(e){
+            e.search || e.search === '' ? filtersCopy.search = e.search : filtersCopy.search = filtersCopy.search;
+            e.school || e.school === '' ? filtersCopy.selectedSchool = e.school : filtersCopy.selectedSchool = filtersCopy.selectedSchool;
+            e.stop  || e.stop === '' ? filtersCopy.selectedStop = e.stop : filtersCopy.selectedStop = filtersCopy.selectedStop;
+        }
+        console.log(filtersCopy)
+        if(filtersCopy.search){
            roadmapCopy = roadmapCopy.filter(r => {
                const name = `${r.firstName} ${r.lastName}`;
-               if( e.search === '' || name.toLowerCase().includes(e.search.toLowerCase())){
+               if( filtersCopy.search === '' || name.toLowerCase().includes(filtersCopy.search.toLowerCase())){
                    return r;
                }
            })
         }
-        if(e && e.school){
-            roadmapCopy = roadmapCopy.filter(r => r.school.id === e.school)
+        if(filtersCopy.selectedSchool){
+            roadmapCopy = roadmapCopy.filter(r => r.school.id === filtersCopy.selectedSchool)
         }
-        if(e && e.stop){
-            roadmapCopy = roadmapCopy.filter(r => r.stop.id === e.stop)
+        if(filtersCopy.selectedStop){
+            roadmapCopy = roadmapCopy.filter(r => r.stop.id === filtersCopy.selectedStop)
         }
-        if(!e){
+        if(!filtersCopy.selectedStop && !filtersCopy.selectedSchool && !filtersCopy.search){
             roadmapCopy = [...roadmap]
         }
+        setFilters(filtersCopy)
         setRoadmapFiltered(roadmapCopy.map(r =>
             <RoadmapCard
             roadmap={r}
@@ -86,6 +95,7 @@ const Roadmap = () => {
                 setOpen={setOpen}
                 schools={schools}
                 stops={stops}
+                filters={filters}
                 onFilter={e => onFilter(e)}
             />
             <Button variant='contained' color='secondary' style={{margin:'10px 5px'}} onClick={() => dispatch(uncheckAll(roadmap))}>Tout décocher</Button>
