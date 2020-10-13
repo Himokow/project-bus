@@ -5,15 +5,18 @@ import CardContent from "@material-ui/core/CardContent";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import DeleteForeverTwoToneIcon from '@material-ui/icons/DeleteForeverTwoTone';
 import IconButton from "@material-ui/core/IconButton";
+import DeleteConfirm from "../../shared/DeleteConfirm";
 
 const StopCard = (props) => {
+
+    const [open,setOpen] = React.useState(false)
 
     return (
         <Card style={{margin:'1vh',position:'relative'}}>
             <Typography variant='h5'>
                 {props.stop.name}
             </Typography>
-            <IconButton onClick={() => props.deleteStop()} style={{position:"absolute",right:'1vh',color:'#b02617'}}>
+            <IconButton onClick={() => setOpen(true)} style={{position:"absolute",right:'1vh',color:'#b02617'}}>
                 <DeleteForeverTwoToneIcon/>
             </IconButton>
             <CardContent>
@@ -21,6 +24,14 @@ const StopCard = (props) => {
                     <LocationOnIcon/> {props.stop.address}
                 </Typography>
             </CardContent>
+
+            <DeleteConfirm
+                open={open}
+                cancel={() => setOpen(false)}
+                delete={props.stop.name}
+                onDelete={() => props.deleteStop()  && setOpen(false)}
+            />
+
         </Card>
     )
 }
