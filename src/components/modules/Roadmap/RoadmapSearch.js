@@ -6,9 +6,8 @@ import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import Drawer from "@material-ui/core/Drawer";
 import Button from "@material-ui/core/Button";
-import DehazeIcon from "@material-ui/icons/Dehaze";
+import ClearAllIcon from '@material-ui/icons/ClearAll';
 import InputLabel from "@material-ui/core/InputLabel";
-import Paper from "@material-ui/core/Paper";
 import Divider from "@material-ui/core/Divider";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
@@ -75,6 +74,8 @@ const RoadmapSearch = (props) => {
     return (
         <React.Fragment key='right'>
             <Drawer anchor='right' open={props.open} onClose={toggleDrawer('left', false)} style={{display:'flex',flexDirection:'column'}}>
+
+                <Button onClick={() => props.clearFilters()} color='secondary' variant='contained' style={{width:'90%',margin:'5px auto'}}><ClearAllIcon style={{color:"white"}}/>Enlever les filtres</Button>
 
                     <TextField inputRef={input} type='text' label='Rechercher un nom' onChange={() => onFilter()}
                        style={{margin:'10px'}}
