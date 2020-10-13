@@ -19,7 +19,6 @@ const Roadmap = () => {
         dispatch(getChildren())
         dispatch(getSchools())
         dispatch(getStops())
-        console.log('here')
     }, [])
 
     const dispatch = useDispatch();
@@ -34,13 +33,12 @@ const Roadmap = () => {
     )
 
     useEffect(() => {
-        console.log('update',roadmap)
         onFilter()
     },[roadmap])
 
     const [roadmapFiltered, setRoadmapFiltered] = React.useState([]);
     const [open,setOpen] = React.useState(false)
-    const [filters,setFilters]= React.useState({selectedSchool:'',selectedStop:'',search:''})
+    const [filters,setFilters]= React.useState({selectedSchool:'',selectedStop:'',search:'',back:'',present:''})
 
     const toggleDrawer = (anchor, o) => (event) => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -50,15 +48,17 @@ const Roadmap = () => {
     };
 
     const onFilter = (e) => {
-        console.log(e)
         let roadmapCopy = [...roadmap];
         let filtersCopy = {...filters}
+        console.log('onfilter',e)
         if(e){
             e.search || e.search === '' ? filtersCopy.search = e.search : filtersCopy.search = filtersCopy.search;
             e.school || e.school === '' ? filtersCopy.selectedSchool = e.school : filtersCopy.selectedSchool = filtersCopy.selectedSchool;
             e.stop  || e.stop === '' ? filtersCopy.selectedStop = e.stop : filtersCopy.selectedStop = filtersCopy.selectedStop;
+            e.back || e.back === false || e.back === '' ? filtersCopy.back = e.back : filtersCopy.back = filtersCopy.back;
+            e.present || e.present === false || e.present === '' ? filtersCopy.present = e.present : filtersCopy.present = filtersCopy.present;
+
         }
-        console.log(filtersCopy)
         if(filtersCopy.search){
            roadmapCopy = roadmapCopy.filter(r => {
                const name = `${r.firstName} ${r.lastName}`;
@@ -73,9 +73,16 @@ const Roadmap = () => {
         if(filtersCopy.selectedStop){
             roadmapCopy = roadmapCopy.filter(r => r.stop.id === filtersCopy.selectedStop)
         }
-        if(!filtersCopy.selectedStop && !filtersCopy.selectedSchool && !filtersCopy.search){
+        if(filtersCopy.back || filtersCopy.back === false){
+            roadmapCopy = roadmapCopy.filter(r => r.back === filtersCopy.back)
+        }
+        if(filtersCopy.present || filtersCopy.present === false){
+            roadmapCopy = roadmapCopy.filter(r => r.present === filtersCopy.present)
+        }
+        if(!filtersCopy.selectedStop && !filtersCopy.selectedSchool && !filtersCopy.search && !filtersCopy.back && !filtersCopy.present){
             roadmapCopy = [...roadmap]
         }
+        console.log('here are the filters',filtersCopy)
         setFilters(filtersCopy)
         setRoadmapFiltered(roadmapCopy.map(r =>
             <RoadmapCard

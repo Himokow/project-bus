@@ -12,7 +12,6 @@ import {Add} from "@material-ui/icons";
 
     const api = process.env.REACT_APP_REACT_APP_API_URL? process.env.REACT_APP_REACT_APP_API_URL : process.env.REACT_APP_API_URL;
 export const getChildren = () => async dispatch => {
-    console.log('here')
     try{
         const res = await axios.get(`${api}/children`)
         dispatch( {
@@ -96,7 +95,6 @@ export const uncheckAll = (children) => async dispatch => {
             c.back=false
             c.present=false
         })
-        console.log(children)
         const res = await axios.get(`${api}/children/uncheck`)
         dispatch({
             type: UNCHECK_ALL_CHILDREN,

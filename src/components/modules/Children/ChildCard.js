@@ -8,8 +8,6 @@ import DeleteForeverTwoToneIcon from "@material-ui/icons/DeleteForeverTwoTone";
 
 
 const ChildCard = (props) => {
-    console.log(props)
-
     const phone = props.children.phone.map(p => <Typography style={{display:'flex',alignItems:'center',justifyContent:'center'}}><PhoneIcon/> {p}</Typography>
     )
     return (
