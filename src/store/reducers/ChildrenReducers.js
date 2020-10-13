@@ -54,14 +54,12 @@ export default function(state = initialState, action){
             copyChild.present = action.payload.present;
             copyChildren[index] = copyChild;
 
-            console.log(copyChildren)
             return{
                 children:copyChildren,
                 loading:false
             }
 
         case UNCHECK_ALL_CHILDREN:
-            console.log(action.payload)
             return{
                 children:action.payload,
                 loading:false

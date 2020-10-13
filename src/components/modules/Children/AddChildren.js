@@ -26,7 +26,6 @@ const AddChildren = (props) => {
             }
         })
         data['phone']=phoneArray;
-        console.log(data)
         props.addedChildren(data);
         handleClose();
     };

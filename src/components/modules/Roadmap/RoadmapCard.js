@@ -35,14 +35,14 @@ const RoadmapCard = (props) => {
                         <FormControlLabel
                             onClick={(event) => event.stopPropagation()}
                             onFocus={(event) => event.stopPropagation()}
-                            control={<Checkbox style={{padding:'0px'}} checked={props.roadmap.present} onChange={(event) => props.checkPresent(event.target.checked)}/>}
+                            control={<Checkbox style={{padding:'0px',color:'#56d141'}} checked={props.roadmap.present} onChange={(event) => props.checkPresent(event.target.checked)}/>}
                             label="Présent"
                             labelPlacement='top'
                         />
                         <FormControlLabel
                         onClick={(event) => event.stopPropagation()}
                         onFocus={(event) => event.stopPropagation()}
-                        control={<Checkbox style={{padding:'0px'}} checked={props.roadmap.back} onChange={(event) => props.checkBack(event.target.checked)}/>}
+                        control={<Checkbox style={{padding:'0px',color:'#4287f5'}} checked={props.roadmap.back} onChange={(event) => props.checkBack(event.target.checked)}/>}
                         label="Retour"
                         labelPlacement='top'
                     />

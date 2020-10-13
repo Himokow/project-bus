@@ -15,11 +15,14 @@ import {useDispatch, useSelector} from "react-redux";
 
 const Roadmap = () => {
 
+    const [roadmapFiltered, setRoadmapFiltered] = React.useState([]);
+    const [open,setOpen] = React.useState(false)
+    const [filters,setFilters]= React.useState({selectedSchool:'',selectedStop:'',search:'',back:'',present:''});
+
     useEffect(() => {
         dispatch(getChildren())
         dispatch(getSchools())
         dispatch(getStops())
-        console.log('here')
     }, [])
 
     const dispatch = useDispatch();
@@ -34,13 +37,8 @@ const Roadmap = () => {
     )
 
     useEffect(() => {
-        console.log('update',roadmap)
-        onFilter()
-    },[roadmap])
-
-    const [roadmapFiltered, setRoadmapFiltered] = React.useState([]);
-    const [open,setOpen] = React.useState(false)
-    const [filters,setFilters]= React.useState({selectedSchool:'',selectedStop:'',search:''})
+        filterRoadmap()
+    },[roadmap,filters])
 
     const toggleDrawer = (anchor, o) => (event) => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -50,39 +48,57 @@ const Roadmap = () => {
     };
 
     const onFilter = (e) => {
-        console.log(e)
-        let roadmapCopy = [...roadmap];
         let filtersCopy = {...filters}
         if(e){
             e.search || e.search === '' ? filtersCopy.search = e.search : filtersCopy.search = filtersCopy.search;
             e.school || e.school === '' ? filtersCopy.selectedSchool = e.school : filtersCopy.selectedSchool = filtersCopy.selectedSchool;
             e.stop  || e.stop === '' ? filtersCopy.selectedStop = e.stop : filtersCopy.selectedStop = filtersCopy.selectedStop;
-        }
-        console.log(filtersCopy)
-        if(filtersCopy.search){
-           roadmapCopy = roadmapCopy.filter(r => {
-               const name = `${r.firstName} ${r.lastName}`;
-               if( filtersCopy.search === '' || name.toLowerCase().includes(filtersCopy.search.toLowerCase())){
-                   return r;
-               }
-           })
-        }
-        if(filtersCopy.selectedSchool){
-            roadmapCopy = roadmapCopy.filter(r => r.school.id === filtersCopy.selectedSchool)
-        }
-        if(filtersCopy.selectedStop){
-            roadmapCopy = roadmapCopy.filter(r => r.stop.id === filtersCopy.selectedStop)
-        }
-        if(!filtersCopy.selectedStop && !filtersCopy.selectedSchool && !filtersCopy.search){
-            roadmapCopy = [...roadmap]
+            e.back || e.back === false || e.back === '' ? filtersCopy.back = e.back : filtersCopy.back = filtersCopy.back;
+            e.present || e.present === false || e.present === '' ? filtersCopy.present = e.present : filtersCopy.present = filtersCopy.present;
         }
         setFilters(filtersCopy)
+    }
+
+    const filterRoadmap = () => {
+        let roadmapCopy = [...roadmap]
+        if(filters.search){
+            roadmapCopy = roadmapCopy.filter(r => {
+                const name = `${r.firstName} ${r.lastName}`;
+                if( filters.search === '' || name.toLowerCase().includes(filters.search.toLowerCase())){
+                    return r;
+                }
+            })
+        }
+        if(filters.selectedSchool){
+            roadmapCopy = roadmapCopy.filter(r => r.school.id === filters.selectedSchool)
+        }
+        if(filters.selectedStop){
+            roadmapCopy = roadmapCopy.filter(r => r.stop.id === filters.selectedStop)
+        }
+        if(filters.back || filters.back === false){
+            roadmapCopy = roadmapCopy.filter(r => r.back === filters.back)
+        }
+        if(filters.present || filters.present === false){
+            roadmapCopy = roadmapCopy.filter(r => r.present === filters.present)
+        }
+        if(!filters.selectedStop && !filters.selectedSchool && !filters.search && !filters.back && !filters.present){
+            roadmapCopy = [...roadmap]
+        }
         setRoadmapFiltered(roadmapCopy.map(r =>
             <RoadmapCard
-            roadmap={r}
-             checkBack={(checked) => dispatch(updateChild({...r,back:checked}))}
-             checkPresent={(checked) => dispatch(updateChild({...r,present:checked}))}/>))
+                roadmap={r}
+                checkBack={(checked) => dispatch(updateChild({...r,back:checked}))}
+                checkPresent={(checked) => dispatch(updateChild({...r,present:checked}))}/>))
     }
+
+    const clearFilters = () => {
+        const filtersCopy = {...filters};
+        Object.entries(filtersCopy).forEach(([key,value]) => {
+            filtersCopy[key]='';
+        });
+        setFilters(filtersCopy)
+    };
+
     return(
         <div>
             <PageHeader
@@ -97,6 +113,7 @@ const Roadmap = () => {
                 stops={stops}
                 filters={filters}
                 onFilter={e => onFilter(e)}
+                clearFilters={() => clearFilters()}
             />
             <Button variant='contained' color='secondary' style={{margin:'10px 5px'}} onClick={() => dispatch(uncheckAll(roadmap))}>Tout décocher</Button>
             <div style={{margin:'5px','overflow-y':'scroll',height:'85vh'}}>

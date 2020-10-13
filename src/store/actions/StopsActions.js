@@ -3,7 +3,6 @@ import axios from 'axios'
 
 const api = process.env.REACT_APP_REACT_APP_API_URL ? process.env.REACT_APP_REACT_APP_API_URL : process.env.REACT_APP_API_URL;
 export const getStops = () => async dispatch => {
-console.log('here')
 
     try{
         const res = await axios.get(`${api}/stop`)
