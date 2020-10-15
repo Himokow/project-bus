@@ -19,6 +19,7 @@ const SchoolCard = (props) => {
 
     return (
         <Card style={{margin:'1vh',position:'relative'}}>
+            <span style={{backgroundColor:props.school.color,position:'absolute',left:0,height:'5000px',width:'10px'}}>&nbsp;</span>
             <Typography variant='h5'>
                 {props.school.name}
             </Typography>
