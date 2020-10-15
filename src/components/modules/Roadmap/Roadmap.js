@@ -7,16 +7,24 @@ import SearchIcon from '@material-ui/icons/Search';
 import InputAdornment from "@material-ui/core/InputAdornment";
 import RoadmapSearch from "./RoadmapSearch";
 import Button from "@material-ui/core/Button";
-import DehazeIcon from "@material-ui/icons/Dehaze";
+import InfoIcon from '@material-ui/icons/Info';
 import {getChildren, uncheckAll, updateChild} from "../../../store/actions/ChildrenActions";
 import {getSchools} from "../../../store/actions/SchoolActions";
 import {getStops} from "../../../store/actions/StopsActions";
 import {useDispatch, useSelector} from "react-redux";
+import IconButton from "@material-ui/core/IconButton";
+import TotalInfos from "./TotalInfos";
 
 const Roadmap = () => {
 
     const [roadmapFiltered, setRoadmapFiltered] = React.useState([]);
-    const [open,setOpen] = React.useState(false)
+    const [roadmapCards, setRoadmapCards] = React.useState([])
+    const [open,setOpen] = React.useState(
+        {
+            search:false,
+            infos:false
+        }
+    )
     const [filters,setFilters]= React.useState({selectedSchool:'',selectedStop:'',search:'',back:'',present:''});
 
     useEffect(() => {
@@ -44,7 +52,7 @@ const Roadmap = () => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
             return;
         }
-        setOpen(o);
+        setOpen({...open,search:o});
     };
 
     const onFilter = (e) => {
@@ -76,7 +84,6 @@ const Roadmap = () => {
             roadmapCopy = roadmapCopy.filter(r => r.stop.id === filters.selectedStop)
         }
         if(filters.back || filters.back === false){
-            console.log(filters.back)
             roadmapCopy = roadmapCopy.filter(r => r.back === filters.back)
         }
         if(filters.present || filters.present === false){
@@ -85,7 +92,8 @@ const Roadmap = () => {
         if(!filters.selectedStop && !filters.selectedSchool && !filters.search && filters.back === '' && filters.present === ''){
             roadmapCopy = [...roadmap]
         }
-        setRoadmapFiltered(roadmapCopy.map(r =>
+        setRoadmapFiltered(roadmapCopy)
+        setRoadmapCards(roadmapCopy.map(r =>
             <RoadmapCard
                 roadmap={r}
                 checkBack={(checked) => dispatch(updateChild({...r,back:checked}))}
@@ -108,17 +116,25 @@ const Roadmap = () => {
             />
             <Button onClick={toggleDrawer('left', true)} style={{position:'absolute',top:0,right:0}}><SearchIcon style={{color:"white"}}/></Button>
             <RoadmapSearch
-                open={open}
-                setOpen={setOpen}
+                open={open.search}
+                setOpen={(o) => setOpen({...open,search:o})}
                 schools={schools}
                 stops={stops}
                 filters={filters}
                 onFilter={e => onFilter(e)}
                 clearFilters={() => clearFilters()}
             />
-            <Button variant='contained' color='secondary' style={{margin:'10px 5px'}} onClick={() => dispatch(uncheckAll(roadmap))}>Tout décocher</Button>
+            <div>
+                <Button variant='contained' color='secondary' style={{margin:'10px 5px'}} onClick={() => dispatch(uncheckAll(roadmap))}>Tout décocher</Button>
+                <IconButton onClick={() => setOpen({...open,infos:true})} style={{position:'absolute',right:0}}><InfoIcon/> </IconButton>
+            </div>
+            <TotalInfos
+                open={open.infos}
+                roadmap={roadmapFiltered}
+                cancel={() => setOpen({...open,infos:false})}
+            />
             <div style={{margin:'5px','overflow-y':'scroll',height:'85vh'}}>
-                {roadmapFiltered}
+                {roadmapCards}
             </div>
         </div>
     )
