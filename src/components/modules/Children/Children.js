@@ -7,7 +7,7 @@ import Fab from "@material-ui/core/Fab";
 import AddChildren from "./AddChildren";
 import {getSchools} from "../../../store/actions/SchoolActions";
 import {useDispatch, useSelector} from "react-redux";
-import {addChild, deleteChild, getChildren} from "../../../store/actions/ChildrenActions";
+import {addChild, deleteChild, getChildren, updateChild} from "../../../store/actions/ChildrenActions";
 import {getStops} from "../../../store/actions/StopsActions";
 
 
@@ -38,7 +38,10 @@ const Children = () => {
     const childrenCard = children.map( c =>
         <ChildCard
             children={c}
+            schools={schools}
+            stops={stops}
             deleteChild={() => dispatch(deleteChild(c))}
+            updateChild={(child) => dispatch(updateChild(child))}
         />
     )
     return(
@@ -54,11 +57,11 @@ const Children = () => {
                 Ajouter un enfant <AddIcon />
             </Fab>
             <AddChildren
-                isOpen = {open}
-                setOpen={setOpen}
+                open = {open}
+                cancel = {() => setOpen(false)}
                 schools={schools}
                 stops={stops}
-                addedChildren={c => dispatch(addChild(c))}/>
+                addedChildren={c => dispatch(addChild(c) && setOpen(false))}/>
         </div>
 )
 }

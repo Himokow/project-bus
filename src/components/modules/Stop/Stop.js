@@ -5,7 +5,7 @@ import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import AddStop from "./AddStop";
 import {useDispatch, useSelector} from "react-redux";
-import {getStops, addStop, deleteStop} from "../../../store/actions/StopsActions";
+import {getStops, addStop, deleteStop, updateStop} from "../../../store/actions/StopsActions";
 import StopCard from "./StopCard";
 
 
@@ -26,7 +26,12 @@ const Stop = () => {
         setOpen(true)
     }
 
-    const stopCards = stops.map(s => <StopCard stop={s} deleteStop={() => dispatch(deleteStop(s))}/>)
+    const stopCards = stops.map(s =>
+        <StopCard
+            stop={s}
+            deleteStop={() => dispatch(deleteStop(s))}
+            updateStop={(stop) => dispatch(updateStop(stop))}/>
+        )
 
     return(
         <div>

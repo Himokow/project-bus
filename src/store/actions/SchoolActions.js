@@ -1,4 +1,4 @@
-import {ADD_SCHOOL, DELETE_SCHOOL, GET_SCHOOLS, SCHOOLS_ERROR} from '../types'
+import {ADD_SCHOOL, DELETE_SCHOOL, GET_SCHOOLS, SCHOOLS_ERROR, STOPS_ERROR, UPDATE_SCHOOL, UPDATE_STOP} from '../types'
 import axios from 'axios'
 
     const api = process.env.REACT_APP_REACT_APP_API_URL ? process.env.REACT_APP_REACT_APP_API_URL : process.env.REACT_APP_API_URL;
@@ -46,6 +46,24 @@ export const deleteSchool = (school) => async dispatch => {
     catch(e){
         dispatch( {
             type: SCHOOLS_ERROR,
+            payload: console.log(e),
+        })
+    }
+}
+
+export const updateSchool = (school) => async dispatch => {
+    const res = await axios.put(`${api}/school/${school.id}`,{
+        name:school.name,
+        address:school.address
+    })
+    try {
+        dispatch({
+            type: UPDATE_SCHOOL,
+            payload: school
+        })
+    } catch (e) {
+        dispatch({
+            type: STOPS_ERROR,
             payload: console.log(e),
         })
     }

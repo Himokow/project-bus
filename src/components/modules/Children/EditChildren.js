@@ -15,7 +15,8 @@ import {getChildren} from "../../../store/actions/ChildrenActions";
 import {getSchools} from "../../../store/actions/SchoolActions";
 import {getStops} from "../../../store/actions/StopsActions";
 
-const AddChildren = (props) => {
+const EditChildren = (props) => {
+    console.log(props)
 
     // const theme = useTheme();
     // const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
@@ -29,7 +30,7 @@ const AddChildren = (props) => {
             }
         })
         data['phone']=phoneArray;
-        props.addedChildren(data);
+        props.updateChild({...data,id:props.children.id,back:props.children.back,present:props.children.back});
         handleClose();
     };
 
@@ -49,6 +50,21 @@ const AddChildren = (props) => {
         props.cancel();
     };
 
+    useEffect(() => {
+        handlePhone();
+    }, [props])
+
+    const handlePhone = () => {
+        if(props.children.phone){
+            const phones = [];
+            props.children.phone.map((p,index) => {
+                const name = `phone${index}`
+                phones.push(<TextField type='text' name={name} label="N° de tel" inputRef={register} defaultValue={p}/>)
+            })
+            setPhone(phones)
+        }
+    }
+
     const schools = props.schools.map(s => <MenuItem value={s.id}>{s.name}</MenuItem>)
     const stops = props.stops.map(s => <MenuItem value={s.id}>{s.name}</MenuItem>)
 
@@ -57,16 +73,17 @@ const AddChildren = (props) => {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <DialogTitle>Ajout d'un enfant</DialogTitle>
                 <DialogContent style={{display:'flex',flexDirection:'column',alignItems:'center'}}>
-                    <TextField type='text' name="lastName" label="Nom" inputRef={register}/>
-                    <TextField type='text' name="firstName" label="Prénom" inputRef={register}/>
+                    <TextField type='text' name="lastName" label="Nom" inputRef={register} defaultValue={props.children.lastName}/>
+                    <TextField type='text' name="firstName" label="Prénom" inputRef={register} defaultValue={props.children.firstName}/>
                     <FormControl style={{width:'100%'}}>
                         <InputLabel>Arrêt</InputLabel>
                         <Controller
                             as={
-                                <Select>
+                                <Select value={props.children.stop.id}>
                                     {stops}
                                 </Select>
                             }
+                            defaultValue={props.children.stop.id}
                             name='stop'
                             control={control}
                         />
@@ -76,9 +93,10 @@ const AddChildren = (props) => {
                         <Controller
                             as={
                                 <Select>
-                                   {schools}
+                                    {schools}
                                 </Select>
                             }
+                            defaultValue={props.children.school.id}
                             name='school'
                             control={control}
                         />
@@ -95,4 +113,4 @@ const AddChildren = (props) => {
     )
 };
 
-export default AddChildren;
+export default EditChildren;

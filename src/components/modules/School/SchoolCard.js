@@ -6,18 +6,27 @@ import LocationOnIcon from '@material-ui/icons/LocationOn';
 import IconButton from "@material-ui/core/IconButton";
 import DeleteForeverTwoToneIcon from "@material-ui/icons/DeleteForeverTwoTone";
 import DeleteConfirm from "../../shared/DeleteConfirm";
+import EditChildren from "../Children/EditChildren";
+import EditIcon from "@material-ui/icons/Edit";
+import EditSchool from "./EditSchool";
 
 const SchoolCard = (props) => {
 
-    const [open,setOpen] = React.useState(false)
+    const [open,setOpen] = React.useState({
+        edit:false,
+        delete:false
+    })
 
     return (
         <Card style={{margin:'1vh',position:'relative'}}>
             <Typography variant='h5'>
                 {props.school.name}
             </Typography>
-            <IconButton onClick={() => setOpen(true)} style={{position:"absolute",right:'1vh',color:'#b02617'}}>
+            <IconButton onClick={() => setOpen({...open,delete:true})} style={{position:"absolute",right:'1vh',bottom:0,color:'#b02617'}}>
                 <DeleteForeverTwoToneIcon/>
+            </IconButton>
+            <IconButton onClick={() => setOpen({...open,edit:true})} style={{position:"absolute",right:'1vh',top:0}}>
+                <EditIcon/>
             </IconButton>
             <CardContent>
                 <Typography>
@@ -25,11 +34,18 @@ const SchoolCard = (props) => {
                 </Typography>
             </CardContent>
 
+            <EditSchool
+                cancel={() => setOpen({...open,edit:false})}
+                open={open.edit}
+                school={props.school}
+                updateSchool={(c) => props.updateSchool(c) && setOpen({...open,edit:false})}
+            />
+
             <DeleteConfirm
-                open={open}
-                cancel={() => setOpen(false)}
+                open={open.delete}
+                cancel={() => setOpen({...open,delete:false})}
                 delete={props.school.name}
-                onDelete={() => props.deleteSchool()  && setOpen(false)}
+                onDelete={() => props.deleteSchool() && setOpen({...open,delete:false})}
             />
 
         </Card>

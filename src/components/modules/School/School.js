@@ -6,7 +6,7 @@ import SchoolCard from "./SchoolCard";
 import Fab from "@material-ui/core/Fab";
 import AddSchool from "./AddSchool";
 import {useDispatch, useSelector} from "react-redux";
-import {addSchool, deleteSchool, getSchools} from "../../../store/actions/SchoolActions";
+import {addSchool, deleteSchool, getSchools, updateSchool} from "../../../store/actions/SchoolActions";
 
 const School = () => {
 
@@ -29,6 +29,7 @@ const School = () => {
             <SchoolCard
                 school={s}
                 deleteSchool={() => dispatch(deleteSchool(s))}
+                updateSchool={(school) => dispatch(updateSchool(school))}
             />
         )
     })
