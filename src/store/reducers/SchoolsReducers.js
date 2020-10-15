@@ -1,4 +1,4 @@
-import {GET_SCHOOLS,ADD_SCHOOL,DELETE_SCHOOL} from '../types'
+import {GET_SCHOOLS, ADD_SCHOOL, DELETE_SCHOOL, UPDATE_CHILD, UPDATE_SCHOOL} from '../types'
 
 const initialState = {
     schools:[],
@@ -32,6 +32,19 @@ export default function(state = initialState, action){
             })
 
             copySchools.splice(index,1)
+
+            return{
+                schools:copySchools,
+                loading:false
+            }
+
+        case UPDATE_SCHOOL:
+
+            index = copySchools.findIndex(s => {
+                return s.id === action.payload.id
+            })
+
+            copySchools[index]=action.payload
 
             return{
                 schools:copySchools,

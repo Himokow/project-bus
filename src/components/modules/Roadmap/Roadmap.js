@@ -76,12 +76,13 @@ const Roadmap = () => {
             roadmapCopy = roadmapCopy.filter(r => r.stop.id === filters.selectedStop)
         }
         if(filters.back || filters.back === false){
+            console.log(filters.back)
             roadmapCopy = roadmapCopy.filter(r => r.back === filters.back)
         }
         if(filters.present || filters.present === false){
             roadmapCopy = roadmapCopy.filter(r => r.present === filters.present)
         }
-        if(!filters.selectedStop && !filters.selectedSchool && !filters.search && !filters.back && !filters.present){
+        if(!filters.selectedStop && !filters.selectedSchool && !filters.search && filters.back === '' && filters.present === ''){
             roadmapCopy = [...roadmap]
         }
         setRoadmapFiltered(roadmapCopy.map(r =>

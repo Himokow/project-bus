@@ -1,4 +1,4 @@
-import {GET_STOPS, ADD_STOP, DELETE_STOP} from '../types'
+import {GET_STOPS, ADD_STOP, DELETE_STOP, UPDATE_STOP} from '../types'
 
 const initialState = {
     stops:[],
@@ -32,6 +32,19 @@ export default function(state = initialState, action){
             })
 
             copyStops.splice(index,1)
+
+            return{
+                stops:copyStops,
+                loading:false
+            }
+
+        case UPDATE_STOP:
+
+            index = copyStops.findIndex(s => {
+                return s.id === action.payload.id
+            })
+
+            copyStops[index] = action.payload;
 
             return{
                 stops:copyStops,

@@ -44,18 +44,10 @@ export default function(state = initialState, action){
                 loading:false
             }
 
-        case UPDATE_CHILD_CHECKBOX:
-            index = copyChildren.findIndex(s => {
-                return s.id === action.payload.id
-            })
-
-            let copyChild = copyChildren[index]
-            copyChild.back = action.payload.back;
-            copyChild.present = action.payload.present;
-            copyChildren[index] = copyChild;
-
+        case UPDATE_CHILD:
+            
             return{
-                children:copyChildren,
+                children:action.payload,
                 loading:false
             }
 

@@ -68,7 +68,8 @@ export const deleteChild = (child) => async dispatch => {
 
 export const updateChild = (child) => async dispatch => {
     try{
-        const res = await axios.put(`${api}/children/${child.id}`,{
+        const res = await axios.put(`${api}/children`,{
+            id:child.id,
             firstName:child.firstName,
             lastName:child.lastName,
             phone:child.phone,
@@ -78,7 +79,7 @@ export const updateChild = (child) => async dispatch => {
             present:child.present
         })
         dispatch({
-            type: UPDATE_CHILD_CHECKBOX,
+            type: UPDATE_CHILD,
             payload:res.data
         })
     } catch (e) {
