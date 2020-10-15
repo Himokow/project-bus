@@ -7,6 +7,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Typography from "@material-ui/core/Typography";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import PhoneIcon from "@material-ui/icons/Phone";
+import Card from "@material-ui/core/Card";
 
 
 const RoadmapCard = (props) => {
@@ -14,7 +15,7 @@ const RoadmapCard = (props) => {
     const phone = props.roadmap.phone.map(p => <Typography style={{display:'flex',alignItems:'center',justifyContent:'left'}}><PhoneIcon/> {p}</Typography>);
 
     return (
-        <Accordion style={{marginBottom:'10px'}}>
+        <Accordion style={{marginBottom:'10px',overflow:'hidden'}}>
             <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-label="Expand"
@@ -22,6 +23,7 @@ const RoadmapCard = (props) => {
                 id="additional-actions1-header"
                 style={{display:'flex',alignItems:'center'}}
             >
+            <span style={{backgroundColor:props.roadmap.school.color,position:'absolute',left:0,top:0,height:'5000px',width:'10px'}}>&nbsp;</span>
                 <div style={{width:'100%'}}>
                     <Typography variant='h5' style={{marginBottom:'5px', textAlign:'left'}}>
                         {props.roadmap.lastName.toUpperCase()} {props.roadmap.firstName}

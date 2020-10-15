@@ -54,7 +54,8 @@ export const deleteSchool = (school) => async dispatch => {
 export const updateSchool = (school) => async dispatch => {
     const res = await axios.put(`${api}/school/${school.id}`,{
         name:school.name,
-        address:school.address
+        address:school.address,
+        color:school.color
     })
     try {
         dispatch({
