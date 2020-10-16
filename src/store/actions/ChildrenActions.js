@@ -4,13 +4,12 @@ import {
     GET_CHILDREN,
     CHILDREN_ERROR,
     UPDATE_CHILD,
-    UPDATE_CHILD_CHECKBOX,
     UNCHECK_ALL_CHILDREN
 } from '../types'
 import axios from 'axios'
-import {Add} from "@material-ui/icons";
 
-    const api = process.env.REACT_APP_REACT_APP_API_URL? process.env.REACT_APP_REACT_APP_API_URL : process.env.REACT_APP_API_URL;
+const api = process.env.REACT_APP_REACT_APP_API_URL? process.env.REACT_APP_REACT_APP_API_URL : process.env.REACT_APP_API_URL;
+
 export const getChildren = () => async dispatch => {
     try{
         const res = await axios.get(`${api}/children`)
@@ -25,7 +24,6 @@ export const getChildren = () => async dispatch => {
             payload: console.log(e),
         })
     }
-
 }
 
 export const addChild = (child) => async dispatch =>  {

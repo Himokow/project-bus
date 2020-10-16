@@ -61,7 +61,7 @@ const Children = () => {
                 cancel = {() => setOpen(false)}
                 schools={schools}
                 stops={stops}
-                addedChildren={c => dispatch(addChild(c) && setOpen(false))}/>
+                addedChildren={c => dispatch(addChild(c)) && setOpen(false)}/>
         </div>
 )
 }
