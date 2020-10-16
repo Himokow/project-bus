@@ -1,4 +1,4 @@
-import {GET_SCHOOLS, ADD_SCHOOL, DELETE_SCHOOL, UPDATE_CHILD, UPDATE_SCHOOL} from '../types'
+import {GET_SCHOOLS, ADD_SCHOOL, DELETE_SCHOOL, UPDATE_SCHOOL} from '../types'
 
 const initialState = {
     schools:[],

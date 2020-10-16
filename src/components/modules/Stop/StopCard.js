@@ -29,9 +29,11 @@ const StopCard = (props) => {
                 <EditIcon/>
             </IconButton>
             <CardContent>
-                <Typography>
+               { props.stop.address ?
+                   <Typography>
                     <LocationOnIcon/> {props.stop.address}
                 </Typography>
+                   : ''}
             </CardContent>
 
 

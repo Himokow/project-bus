@@ -2,6 +2,7 @@ import {ADD_STOP, DELETE_STOP, GET_STOPS, STOPS_ERROR, UPDATE_STOP} from '../typ
 import axios from 'axios'
 
 const api = process.env.REACT_APP_REACT_APP_API_URL ? process.env.REACT_APP_REACT_APP_API_URL : process.env.REACT_APP_API_URL;
+
 export const getStops = () => async dispatch => {
 
     try{

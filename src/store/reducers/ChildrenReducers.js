@@ -3,7 +3,6 @@ import {
     ADD_CHILD,
     DELETE_CHILD,
     UPDATE_CHILD,
-    UPDATE_CHILD_CHECKBOX,
     UNCHECK_ALL_CHILDREN
 } from '../types'
 
@@ -45,7 +44,7 @@ export default function(state = initialState, action){
             }
 
         case UPDATE_CHILD:
-            
+
             return{
                 children:action.payload,
                 loading:false

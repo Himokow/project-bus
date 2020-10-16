@@ -14,6 +14,15 @@ import Stop from "./components/modules/Stop/Stop";
 const darkTheme = createMuiTheme({
     palette: {
         type: 'dark',
+        primary : {
+            main :'#23a599'
+        },
+        secondary : {
+            main:'#0e6564'
+        },
+        background:{
+            paper:'#191919'
+        }
     },
 });
 

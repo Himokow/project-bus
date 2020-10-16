@@ -12,7 +12,13 @@ import Card from "@material-ui/core/Card";
 
 const RoadmapCard = (props) => {
 
-    const phone = props.roadmap.phone.map(p => <Typography style={{display:'flex',alignItems:'center',justifyContent:'left'}}><PhoneIcon/> {p}</Typography>);
+    const phone = props.roadmap.phone.map(p => {
+        if(p){
+            return <Typography style={{display:'flex',alignItems:'center',justifyContent:'left'}}><PhoneIcon/> {p}</Typography>
+        } else {
+            return <Typography style={{display:'flex',alignItems:'center',justifyContent:'left'}}><PhoneIcon/>Aucun numéro de téléhpone</Typography>
+        }
+    });
 
     return (
         <Accordion style={{marginBottom:'10px',overflow:'hidden'}}>

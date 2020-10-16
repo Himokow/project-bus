@@ -59,7 +59,7 @@ const AddChildren = (props) => {
                 <DialogContent style={{display:'flex',flexDirection:'column',alignItems:'center'}}>
                     <TextField type='text' name="lastName" label="Nom" inputRef={register}/>
                     <TextField type='text' name="firstName" label="Prénom" inputRef={register}/>
-                    <FormControl style={{width:'100%'}}>
+                    <FormControl style={{width:'90%'}}>
                         <InputLabel>Arrêt</InputLabel>
                         <Controller
                             as={
@@ -71,7 +71,7 @@ const AddChildren = (props) => {
                             control={control}
                         />
                     </FormControl>
-                    <FormControl style={{width:'100%'}}>
+                    <FormControl style={{width:'90%'}}>
                         <InputLabel>Choix d'école</InputLabel>
                         <Controller
                             as={

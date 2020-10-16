@@ -1,7 +1,8 @@
-import {ADD_SCHOOL, DELETE_SCHOOL, GET_SCHOOLS, SCHOOLS_ERROR, STOPS_ERROR, UPDATE_SCHOOL, UPDATE_STOP} from '../types'
+import {ADD_SCHOOL, DELETE_SCHOOL, GET_SCHOOLS, SCHOOLS_ERROR, STOPS_ERROR, UPDATE_SCHOOL} from '../types'
 import axios from 'axios'
 
-    const api = process.env.REACT_APP_REACT_APP_API_URL ? process.env.REACT_APP_REACT_APP_API_URL : process.env.REACT_APP_API_URL;
+const api = process.env.REACT_APP_REACT_APP_API_URL ? process.env.REACT_APP_REACT_APP_API_URL : process.env.REACT_APP_API_URL;
+
 export const getSchools = () => async dispatch => {
     try{
         const res = await axios.get(`${api}/school`)

@@ -18,8 +18,16 @@ const ChildCard = (props) => {
         edit:false,
         delete:false
     })
-    const phone = props.children.phone.map(p => <Typography style={{display:'flex',alignItems:'center',justifyContent:'center'}}><PhoneIcon/> {p}</Typography>
-    )
+    let phone = []
+    for(let p of props.children.phone){
+        if(p){
+            phone.push(<Typography style={{display:'flex',alignItems:'center',justifyContent:'center'}}><PhoneIcon/> {p}</Typography>)
+        }
+    }
+    // const phone = props.children.phone.map(p =>{
+    //     if(p) return <Typography style={{display:'flex',alignItems:'center',justifyContent:'center'}}><PhoneIcon/> {p}</Typography>}
+    // )
+    console.log(phone.length,phone)
 
     return (
   <Card style={{margin:'1vh',position:'relative'}}>
@@ -35,7 +43,7 @@ const ChildCard = (props) => {
       <CardContent>
           <Typography>Arrêt : {props.children.stop.name}</Typography>
           <Typography>École : {props.children.school.name}</Typography>
-          {phone}
+          {phone.length > 0 ? phone : ''}
 
       </CardContent>
 
